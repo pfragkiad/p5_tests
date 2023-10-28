@@ -8,10 +8,49 @@ var x, y;
 let walker;
 let mover;
 
+class runner
+{
+    constructor(x,y)
+    {
+        this.position = createVector(x,y)
+    }
+
+    display() 
+    {
+        console.log(this.position)
+    }
+}
+
+class fastrunner extends runner
+{
+    constructor(x,y)
+    {
+        super(x,y);
+        if(fastrunner.i === undefined)
+         fastrunner.i=1
+        else fastrunner.i++
+    }
+
+    display() 
+    {
+        this.position.mult(1.1)
+        console.log(this.position.x, this.position.y, fastrunner.i)
+    }
+
+    display(x) 
+    {
+        this.position.mult(x)
+        console.log(this.position.x, this.position.y, fastrunner.i)
+    }
+
+} 
+
 function setup() {
-    createCanvas(500, 500)
+    createCanvas(300, 200)
     background(50,50,50)
     pixelDensity(1)
+    frameRate(60)
+    //frameRate(30)
     
     //noiseDetail(5)
 
@@ -164,8 +203,12 @@ function draw() {
 
     i++;
 
-    if (i % 10 ==0)
-    console.log(frameRate())
+     if (i % 100 ==0)
+     {
+    // console.log(frameRate())
+    r1 = new fastrunner(10,10)
+    r1.display(10)
+     }
 
     //randomWalker();
     //randomWalkerOop();
